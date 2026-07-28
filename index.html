@@ -50,5 +50,36 @@
     * https://docs.flutter.dev/platform-integration/web/initialization
   -->
   <script src="flutter_bootstrap.js" async></script>
+  <script>
+    // Keep the installed PWA fresh. iOS home-screen apps hold onto their cached
+    // service worker indefinitely, so a redeploy would otherwise never reach the
+    // phone. Check for an update on every launch, activate it immediately, and
+    // reload once when the new worker takes over.
+    if ('serviceWorker' in navigator) {
+      var reloadedForUpdate = false;
+      navigator.serviceWorker.addEventListener('controllerchange', function () {
+        if (reloadedForUpdate) return;
+        reloadedForUpdate = true;
+        window.location.reload();
+      });
+      navigator.serviceWorker.ready.then(function (reg) {
+        function activate(worker) {
+          if (worker) worker.postMessage('skipWaiting');
+        }
+        activate(reg.waiting);
+        reg.addEventListener('updatefound', function () {
+          var installing = reg.installing;
+          if (!installing) return;
+          installing.addEventListener('statechange', function () {
+            if (installing.state === 'installed' &&
+                navigator.serviceWorker.controller) {
+              activate(installing);
+            }
+          });
+        });
+        reg.update();
+      }).catch(function () {});
+    }
+  </script>
 </body>
 </html>
