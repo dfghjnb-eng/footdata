@@ -1,0 +1,35 @@
+{
+    "name": "FootData",
+    "short_name": "FootData",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#0B1220",
+    "theme_color": "#0B1220",
+    "description": "아메이즈핏 기록으로 보는 프로 축구 퍼포먼스 분석",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}
