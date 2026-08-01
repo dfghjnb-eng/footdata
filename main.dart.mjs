@@ -437,6 +437,7 @@ class CompiledApp {
       _1328: (module,f) => finalizeWrapper(f, function(x0) { return module.exports._1328(f,arguments.length,x0) }),
       _1329: (x0,x1) => x0.removeChild(x1),
       _1330: x0 => x0.click(),
+      _1332: x0 => globalThis.URL.revokeObjectURL(x0),
       _1338: Date.now,
       _1340: s => new Date(s * 1000).getTimezoneOffset() * 60,
       _1341: s => {
@@ -782,6 +783,8 @@ class CompiledApp {
       _1741: (x0,x1) => x0.error(x1),
       _1863: (x0,x1) => { x0.draggable = x1 },
       _1879: x0 => x0.style,
+      _2238: (x0,x1) => { x0.download = x1 },
+      _2263: (x0,x1) => { x0.href = x1 },
       _2808: (x0,x1) => { x0.accept = x1 },
       _2822: x0 => x0.files,
       _2848: (x0,x1) => { x0.multiple = x1 },
