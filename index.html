@@ -54,6 +54,45 @@
   -->
   <script src="flutter_bootstrap.js" async></script>
   <script>
+    // Stop iOS starting its back/forward swipe. The app already refuses the
+    // navigation, but iOS still peels the page and snaps it back, which reads
+    // as the screen reacting to a gesture that does nothing.
+    //
+    // The gesture begins at the very edge of the screen, so only touches that
+    // start there are candidates. The first move decides: mostly sideways is
+    // the swipe and gets cancelled; anything more vertical is a scroll and is
+    // left alone, otherwise scrolling with a thumb near the bezel would stick.
+    // preventDefault only suppresses the browser's own behaviour — Flutter
+    // still receives the pointer events, so taps and drags keep working.
+    (function () {
+      var EDGE = 26;
+      var watching = false, startX = 0, startY = 0;
+
+      document.addEventListener('touchstart', function (e) {
+        if (e.touches.length !== 1) { watching = false; return; }
+        var t = e.touches[0];
+        startX = t.clientX;
+        startY = t.clientY;
+        watching = startX <= EDGE || startX >= window.innerWidth - EDGE;
+      }, { passive: true });
+
+      document.addEventListener('touchmove', function (e) {
+        if (!watching) return;
+        var t = e.touches[0];
+        if (!t) return;
+        if (Math.abs(t.clientY - startY) > Math.abs(t.clientX - startX)) {
+          watching = false; // a scroll, not the edge swipe
+          return;
+        }
+        if (e.cancelable) e.preventDefault();
+      }, { passive: false });
+
+      function done() { watching = false; }
+      document.addEventListener('touchend', done, { passive: true });
+      document.addEventListener('touchcancel', done, { passive: true });
+    })();
+  </script>
+  <script>
     // Keep the installed PWA fresh. iOS home-screen apps hold onto their cached
     // service worker indefinitely, so a redeploy would otherwise never reach the
     // phone. Check for an update on every launch, activate it immediately, and
