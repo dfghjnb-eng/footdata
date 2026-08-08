@@ -569,7 +569,6 @@ class CompiledApp {
             constructor, [null, ...args]);
         return new factoryFunction();
       },
-      _1536: (o, p) => p in o,
       _1537: (o, p) => o[p],
       _1538: (o, p, v) => o[p] = v,
       _1539: (o, m, a) => o[m].apply(o, a),
@@ -672,7 +671,6 @@ class CompiledApp {
         return s;
       },
       _1564: x0 => x0.index,
-      _1565: x0 => x0.groups,
       _1566: x0 => x0.flags,
       _1567: x0 => x0.multiline,
       _1568: x0 => x0.ignoreCase,
