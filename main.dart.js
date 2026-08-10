@@ -31199,7 +31199,7 @@ for(r=s.length,l=a1.y,k=a1.Q,j=a1.z,i=a1.as,h=!1,g=0;g<s.length;s.length===r||(0
 e=f.a
 d=a1.o5(e)
 q.push(B.c.bG((d.a-l)/k,0,1))
-p.push(B.c.bG((d.b-j)/i,0,1))
+p.push(B.c.bG(1-(d.b-j)/i,0,1))
 o.push(f.b)
 n.push(f.e*3.6)
 c=e.e
