@@ -706,7 +706,6 @@ class CompiledApp {
       _1619: (a, s, e) => a.slice(s, e),
       _1621: (a, b) => a == b ? 0 : (a > b ? 1 : -1),
       _1622: a => a.length,
-      _1623: (a, l) => a.length = l,
       _1624: (a, i) => a[i],
       _1625: (a, i, v) => a[i] = v,
       _1627: o => {
